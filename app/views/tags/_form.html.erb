@@ -1,0 +1,67 @@
+<%= form_with model: tag do |f| %>
+  <div class="m-20 w-[60rem] text-lg uppercase">
+    <div>
+      <div>
+        <%= f.label :nome_cliente, "Nome do cliente" %>
+        <%= f.text_field :nome_cliente, class: "block h-9" %>
+      </div>
+
+      <div class="mt-4 flex gap-8">
+        <div>
+          <%= f.label :placa_carro, "Placa" %>
+          <%= f.text_field :placa_carro, class: "block h-9" %>
+        </div>
+
+        <div>
+          <%= f.label :telefone, "Telefone" %>
+          <%= f.text_field :telefone, class: "block h-9" %>
+        </div>
+      </div>
+
+      <div class="flex gap-x-8">
+        <div class="mt-4">
+          <%= f.label :numero_pedido_bling, "Número pedido Bling" %>
+          <%= f.text_field :numero_pedido_bling, class: "block h-9" %>
+        </div>
+
+        <div class="mt-4">
+          <%= f.label :lembrar_cliente_em %>
+          <%= f.text_field :lembrar_cliente_em, class: "block h-9" %>
+        </div>
+
+      </div>
+
+      
+    </div>
+
+    <div class="mt-10">
+      <p class=" ml-24"><span class="inline-block w-80 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"><%= Time.now.day %> / <%= Time.now.month %> / <%= Time.now.year %></span></p>
+
+      <p class=" ml-9">com 
+        <%= f.text_field :km_atual, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %> km t:
+        <%= f.text_field :nome_mecanico, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %>
+      </p>
+
+      <p>óleo <%= f.text_field :oleo_utilizado, class: "inline-block w-[26rem] border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %> </p>
+
+      <p class="ml-44 mt-2">próxima troca</p>
+
+      <p>óleo motor <%= f.text_field :km_proxima_troca_oleo_motor, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %> km ou <%= f.text_field :meses_proxima_troca_oleo_motor, class: "inline-block w-24 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %>meses</p>
+
+      <p class="ml-8">filt óleo <%= f.text_field :km_proxima_troca_filtro_oleo, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %> filt ar motor <%= f.text_field :km_proxima_troca_filtro_ar_motor, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %></p>
+      
+      <p class="ml-16">filt ar cond <%= f.text_field :km_proxima_troca_filtro_ar_condicionado, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %> filt comb <%= f.text_field :km_proxima_troca_filtro_oleo_combustivel, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %></p>
+
+      <p class="ml-20">diferencial <%= f.text_field :km_proxima_troca_diferencial, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %> óleo cambio <%= f.text_field :km_proxima_troca_oleo_cambio, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %></p>
+
+      <p class="ml-24">fluido radiador <%= f.text_field :km_proxima_troca_fluido_radiador, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %> óleo freio <%= f.text_field :km_proxima_troca_oleo_freio, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %></p>
+      
+      <p class="ml-36">alinhamento <%= f.text_field :km_proximo_alinhamento, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %> f.direção <%= f.text_field :km_proxima_troca_fluido_direcao, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %></p>
+
+      <p class="ml-64 ">balanceamento <%= f.text_field :km_proximo_balanceamento, class: "inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold" %> </p>
+    </div>
+    <div class="ml-72 mt-10">
+      <%= f.submit "Salvar", class: "bg-blue-200 p-2 cursor-pointer" %>
+    </div>
+  </div>
+<% end %>

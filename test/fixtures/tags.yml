@@ -1,0 +1,43 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  placa_carro: MyString
+  nome_cliente: MyString
+  nome_mecanico: MyString
+  telefone: MyString
+  km_atual: MyString
+  oleo_utilizado: MyString
+  km_proxima_troca_oleo_motor: MyString
+  meses_proxima_troca_oleo_motor: MyString
+  km_proxima_troca_filtro_oleo: MyString
+  km_proxima_troca_filtro_ar_motor: MyString
+  km_proxima_troca_filtro_ar_condicionado: MyString
+  km_proxima_troca_filtro_oleo_combustivel: MyString
+  km_proxima_troca_diferencial: MyString
+  km_proxima_troca_oleo_cambio: MyString
+  km_proxima_troca_fluido_radiador: MyString
+  km_proxima_troca_oleo_freio: MyString
+  km_proximo_alinhamento: MyString
+  km_proximo_rodizio: MyString
+  km_proximo_balanceamento: MyString
+
+two:
+  placa_carro: MyString
+  nome_cliente: MyString
+  nome_mecanico: MyString
+  telefone: MyString
+  km_atual: MyString
+  oleo_utilizado: MyString
+  km_proxima_troca_oleo_motor: MyString
+  meses_proxima_troca_oleo_motor: MyString
+  km_proxima_troca_filtro_oleo: MyString
+  km_proxima_troca_filtro_ar_motor: MyString
+  km_proxima_troca_filtro_ar_condicionado: MyString
+  km_proxima_troca_filtro_oleo_combustivel: MyString
+  km_proxima_troca_diferencial: MyString
+  km_proxima_troca_oleo_cambio: MyString
+  km_proxima_troca_fluido_radiador: MyString
+  km_proxima_troca_oleo_freio: MyString
+  km_proximo_alinhamento: MyString
+  km_proximo_rodizio: MyString
+  km_proximo_balanceamento: MyString

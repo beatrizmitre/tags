@@ -1,0 +1,168 @@
+<div class="p-10">
+
+  <%= form_with scope: :tag_maker, id: "tag_maker_form", url: tag_makers_path do |f| %>
+  
+    <div>
+      <div>
+        <%= f.label :nome_cliente, "Nome do cliente" %>
+        <%= f.text_field :nome_cliente, class: "block h-9" %>
+      </div>
+
+      <div class="mt-4 flex gap-8">
+        <div>
+          <%= f.label :placa_carro, "Placa" %>
+          <%= f.text_field :placa_carro, class: "block h-9" %>
+        </div>
+
+        <div>
+          <%= f.label :telefone, "Telefone" %>
+          <%= f.text_field :telefone, class: "block h-9" %>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <%= f.label :numero_pedido_bling, "Número pedido Bling" %>
+        <%= f.text_field :numero_pedido_bling, class: "block h-9" %>
+      </div>
+      
+    </div>
+
+    <div>
+
+      <div class="flex gap-8">
+        <div class="mt-10" data-controller="tagpreview">
+          <%= f.label :km_atual, "Quilometragem Atual" %>
+          <%= f.text_field :km_atual, class: "block h-9", data: { controller: "tagpreview", tagpreview_target: "kmatual", action: "input->tagpreview#showkm" } %>
+
+          <div class="text-red-600 h-10"><%= @tag_maker.errors[:km_atual] %></div>
+        </div>
+
+        <div class="mt-10">
+
+          <div>Lembrar cliente da próxima troca em:</div>
+          <div class="mt-2 flex gap-x-8">
+            <label>
+              <%= f.radio_button :enviar_lembrete_apos, "1 mês" %>
+              1 mês
+            </label>
+            <label>
+              <%= f.radio_button :enviar_lembrete_apos, "3 meses" %>
+              3 meses
+            </label>
+            <label>
+              <%= f.radio_button :enviar_lembrete_apos, "6 meses" %>
+              6 meses
+            </label>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 font-semibold">Próxima troca de óleo do motor após</div>
+      <div class="flex gap-x-8 items-center">
+        <div class="mt-2">
+          <%= f.radio_button :km_proxima_troca, "5000", data: { controller: "hotkey", hotkey: "5" } %>
+          <%= f.label :km_proxima_troca_5000, "5.000 km" %>
+        </div>
+        <div class="mt-2">
+          <%= f.radio_button :km_proxima_troca, "7500", checked: true, data: { controller: "hotkey", hotkey: "7" } %>
+          <%= f.label :km_proxima_troca_7500, "7.500 km" %>
+        </div>
+        <div class="mt-2">
+          <%= f.radio_button :km_proxima_troca, "10000", data: { controller: "hotkey", hotkey: "1 0" } %>
+          <%= f.label :km_proxima_troca_10000, "10.000 km" %>
+        </div>
+        
+      </div>
+
+      <div class="mt-6 font-semibold">Serviços realizados</div>
+
+      <div class="flex gap-x-10">
+
+        <div>
+          <div class="flex items-center w-42 mt-2">
+            <%= f.check_box "alinhamento", class: "mr-2" , data: { controller: "hotkey", hotkey: "a l" } %>
+            <%= f.label :alinhamento, "Alinhamento" %>
+          </div>
+
+          <div class="flex items-center w-42 mt-2">
+            <%= f.check_box "balanceamento", class: "mr-2", data: { controller: "hotkey", hotkey: "b a" } %>
+            <%= f.label :balanceamento, "Balanceamento" %>
+          </div>
+
+          <div class="flex items-center w-42 mt-2">
+            <%= f.check_box "diferencial", class: "mr-2", data: { controller: "hotkey", hotkey: "d i" } %>
+            <%= f.label :diferencial, "Diferencial" %>
+          </div>
+
+          <div class="flex items-center w-42 mt-2">
+            <%= f.check_box "f_direcao", class: "mr-2", data: { controller: "hotkey", hotkey: "f d" } %>
+            <%= f.label :f_direcao, "Fluido de direção" %>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center w-42 mt-2">
+            <%= f.check_box "filt_ar_cond", class: "mr-2" %>
+            <%= f.label :filt_ar_cond, "Filto do ar condicionado" %>
+          </div>
+
+          <div class="flex items-center w-42 mt-2">
+            <%= f.check_box "filt_ar_motor", class: "mr-2" %>
+            <%= f.label :filt_ar_motor, "Filtro de ar do motor" %>
+          </div>
+
+          <div class="flex items-center w-42 mt-2">
+            <%= f.check_box "filt_comb", class: "mr-2" %>
+            <%= f.label :filt_comb, "Filtro do combustível" %>
+          </div>
+
+          <div class="flex items-center w-42 mt-2">
+            <%= f.check_box "filt_oleo", class: "mr-2" %>
+            <%= f.label :filt_oleo, "Filtro de óleo" %>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center w-42 mt-2">
+            <%= f.check_box "fluido_radiador", class: "mr-2" %>
+            <%= f.label :fluido_radiador, "Fluido radiador" %>
+          </div>
+
+          <div class="flex items-center w-42 mt-2">
+            <%= f.check_box "oleo_cambio", class: "mr-2" %>
+            <%= f.label :oleo_cambio, "Óleo de câmbio" %>
+          </div>
+
+          <div class="flex items-center w-42 mt-2">
+            <%= f.check_box "oleo_freio", class: "mr-2" %>
+            <%= f.label :oleo_freio, "Óleo de freio" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 font-semibold">Tipo do câmbio</div>
+      <div class="flex items-center w-42 mt-2 gap-x-4">
+        <div>
+          <label>
+            <%= f.radio_button :tipo_cambio, "Automático" %>
+            Automático
+          </label>
+        </div>
+
+        <div>
+          <label>
+            <%= f.radio_button :tipo_cambio, "Manual" %>
+            Manual
+          </label>
+        </div>
+      </div>
+      <div class="h-10 text-red-600"><%= @tag_maker.errors[:tipo_cambio] %></div>
+    </div>
+    <div>
+      <%= f.submit "Montar etiqueta", class: "cursor-pointer p-2 bg-green-300 mt-8" %>
+    </div>
+
+  <% end %>
+
+</div>

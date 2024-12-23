@@ -1,0 +1,2 @@
+module PrintButtonClicksHelper
+end
