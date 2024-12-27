@@ -1,43 +1,43 @@
   <div class="ml-20 mt-10 text-lg underline">
-    <a href=<%= new_tag_maker_path %>>Criar uma nova etiqueta</a>
+    <a href=<%= new_tag_maker_path %>><%= t('Criar uma nova etiqueta')%></a>
     <div>
-      <%= link_to "Editar esta etiqueta", edit_tag_path(@tag) %>
+      <%= link_to t('Editar esta etiqueta'), edit_tag_path(@tag) %>
     </div>
   </div>
   
   <div class="m-20 w-[60rem] text-lg uppercase">
     <div class="mt-10">
-      <p class=" ml-24"><span class="inline-block w-96 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"><%= Time.now.day %> / <%= Time.now.month %> / <%= Time.now.year %></span></p>
+      <p class=" ml-24"><span class="inline-block w-96 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"><%= l(Date.new(Time.now.year, Time.now.month, Time.now.day)) %></span></p>
 
-      <p class="ml-9">com 
+      <p class="ml-9"> <%= t('com') %> 
        <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_atual %> </span> km t:
        <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.nome_mecanico %> </span>
       </p>
 
-       <p>óleo <span class="inline-block w-[26rem] border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.oleo_utilizado %> </span> </p>
+       <p><%=t('óleo')%> <span class="inline-block w-[26rem] border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.oleo_utilizado %> </span> </p>
 
-       <p class="ml-44 mt-2">próxima troca</p>
+       <p class="ml-44 mt-2"><%= t('próxima troca')%></p>
 
-       <p>óleo motor <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_oleo_motor %> </span> km ou <span class="inline-block w-24 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.meses_proxima_troca_oleo_motor %> </span> meses </p>
+       <p><%= t('óleo motor') %> <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_oleo_motor %> </span> km <%= t('ou') %> <span class="inline-block w-24 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.meses_proxima_troca_oleo_motor %> </span> <%= t('meses') %></p>
 
-       <p class="ml-8">filt óleo <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_filtro_oleo %> </span> filt ar motor <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_filtro_ar_motor %> </span></p>
+       <p class="ml-8"><%= t('filt óleo') %> <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_filtro_oleo %> </span> <%= t('filt ar motor') %> <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_filtro_ar_motor %> </span></p>
 
-       <p class="ml-16">filt ar cond <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_filtro_ar_condicionado %> </span> filt comb <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_filtro_oleo_combustivel  %> </span></p>
+       <p class="ml-16"><%= t('filt ar cond') %><span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_filtro_ar_condicionado %> </span> <%= t('filt comb') %> <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_filtro_oleo_combustivel  %> </span></p>
 
-       <p class="ml-20">diferencial <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_diferencial %> </span> óleo cambio <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_oleo_cambio %> </span></p>
+       <p class="ml-20"><%= t('diferencial') %><span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_diferencial %> </span> <%= t('óleo cambio') %> <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_oleo_cambio %> </span></p>
 
-       <p class="ml-24">fluido radiador <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_fluido_radiador %> </span> óleo freio <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_oleo_freio %> </span></p>
+       <p class="ml-24"><%= t('fluido radiador') %><span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_fluido_radiador %> </span> <%= t('óleo freio') %><span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_oleo_freio %> </span></p>
 
-       <p class="ml-36">alinhamento <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proximo_alinhamento %> </span> f.direção <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_fluido_direcao %> </span></p>
+       <p class="ml-36"><%= t('alinhamento') %><span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proximo_alinhamento %> </span><%= t('direcao') %><span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proxima_troca_fluido_direcao %> </span></p>
 
-       <p class="ml-64">balanceamento <span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proximo_balanceamento %></span> </p>
+       <p class="ml-64"><%= t('balanceamento') %><span class="inline-block w-40 border-0 border-b-2 border-b-black pb-0 text-center text-lg font-semibold"> <%= @tag.km_proximo_balanceamento %></span> </p>
     </div>
     <div class="ml-72 mt-10">
       <button data-controller="encrenca"
               data-action="encrenca#print"
               data-encrenca-tag-param="<%= @tag.id %>"
               class="bg-blue-200 p-3 cursor-pointer" 
-        data-encrenca-zpl-param='<%= @tag.generate_zpl %>'>Imprimir</button>
+        data-encrenca-zpl-param='<%= @tag.generate_zpl %>'><%= t('Imprimir') %></button>
     </div>
   </div>
     

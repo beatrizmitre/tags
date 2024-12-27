@@ -1,4 +1,5 @@
 class TagMaker
+  include ActionView::Helpers::NumberHelper
   attr_accessor :nome_cliente, :placa_carro, :telefone, :numero_pedido_bling, :km_atual, :km_proxima_troca, :alinhamento,
   :balanceamento, :diferencial, :f_direcao, :filt_ar_cond, :filt_ar_motor, :filt_comb, :filt_oleo, :fluido_radiador, :oleo_cambio, :oleo_freio, :tipo_cambio, :errors
 
@@ -104,86 +105,86 @@ class TagMaker
   end
 
   def preencher_km_atual
-    @km_atual.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1.')
+    number_with_delimiter(@km_atual)
   end
 
   def preencher_km_oleo_motor
     if @km_atual
-      calcular_km_proxima_troca_oleo_motor.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1.')
+      number_with_delimiter calcular_km_proxima_troca_oleo_motor
     else
-      "PRÓXIMA"
+      I18n.t("PRÓXIMA")
     end
   end
 
   def preencher_km_filtro_oleo_motor
     if @filt_oleo
-      calcular_km_proxima_troca_filtro_oleo_motor.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1.')
+      number_with_delimiter calcular_km_proxima_troca_filtro_oleo_motor
     else
-      "PRÓXIMA"
+      I18n.t("PRÓXIMA")
     end
   end
 
   def preencher_km_filtro_ar_motor
     if @filt_ar_motor
-      calcular_km_proxima_troca_filt_ar_motor.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1.')
+      number_with_delimiter calcular_km_proxima_troca_filt_ar_motor
     else
-      "PRÓXIMA"
+      I18n.t("PRÓXIMA")
     end
   end
 
   def preencher_km_filtro_ar_condicionado
     if @filt_ar_cond
-      calcular_km_proxima_troca_filt_ar_condicionado.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1.')
+      number_with_delimiter calcular_km_proxima_troca_filt_ar_condicionado
     else
-      "PRÓXIMA"
+      I18n.t("PRÓXIMA")
     end
   end
 
   def preencher_km_filtro_combustivel
     if @filt_comb
-      calcular_km_proxima_troca_filt_oleo_combustivel.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1.')
+      number_with_delimiter calcular_km_proxima_troca_filt_oleo_combustivel
     else
-      "PRÓXIMA"
+      I18n.t("PRÓXIMA")
     end
   end
 
   def preencher_km_filtro_diferencial
     if @diferencial
-      calcular_km_proxima_troca_diferencial.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1.')
+      number_with_delimiter calcular_km_proxima_troca_diferencial
     else
-      "PRÓXIMA"
+      I18n.t("PRÓXIMA")
     end
   end
 
   def preencher_km_fluido_radiador
     if @fluido_radiador
-      calcular_proxima_troca_fluido_radiador.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1.')
+      number_with_delimiter calcular_proxima_troca_fluido_radiador
     else
-      "PRÓXIMA"
+      I18n.t("PRÓXIMA")
     end
   end
 
   def preencher_km_oleo_freio
     if @oleo_freio
-      calcular_proxima_troca_fluido_freio.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1.')
+      number_with_delimiter calcular_proxima_troca_fluido_freio
     else
-      "PRÓXIMA"
+      I18n.t("PRÓXIMA")
     end
   end
 
   def preencher_km_fluido_direcao
     if @f_direcao
-      calcular_proxima_troca_fluido_direcao.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1.')
+      number_with_delimiter calcular_proxima_troca_fluido_direcao
     else
-      "PRÓXIMA"
+      I18n.t("PRÓXIMA")
     end
   end
 
   def preencher_km_oleo_cambio
     if @tipo_cambio == "Manual"
-      @km_atual.to_i + 40000
+      number_with_delimiter(@km_atual.to_i + 40000)
     elsif  @tipo_cambio == "Automático"
-      @km_atual.to_i + 60000
+      number_with_delimiter(@km_atual.to_i + 60000)
     end
   end
 
@@ -195,13 +196,13 @@ class TagMaker
   end
 
   def validar_km_atual
-    @errors[:km_atual] = "Precisa ser um número" if @km_atual.to_i == 0
-    @errors[:km_atual] = "Não pode ser zero" if @km_atual == "0"
+    @errors[:km_atual] = I18n.t("Precisa ser um número") if @km_atual.to_i == 0
+    @errors[:km_atual] = I18n.t("Não pode ser zero") if @km_atual == "0"
   end
 
   def validar_km_oleo_de_cambio
     if @oleo_cambio && @tipo_cambio.nil?
-      @errors[:tipo_cambio] = "Selecione o tipo do câmbio"
+      @errors[:tipo_cambio] = I18n.t("Selecione o tipo do câmbio")
     end
   end
 
