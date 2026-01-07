@@ -112,9 +112,4 @@ class ZplGenerator
     a = ""
     label.dump_contents a
   end
-
-  def etiqueta
-    km_proxima_troca_diferencial
-  end
-
 end

@@ -34,7 +34,15 @@ class TagsController < ApplicationController
   end
 
   def tag_params
-     params.permit!
-     params.require(:tag)
+    params.require(:tag).permit(
+      :placa_carro, :nome_cliente, :nome_mecanico, :telefone, :km_atual,
+      :oleo_utilizado, :km_proxima_troca_oleo_motor, :meses_proxima_troca_oleo_motor,
+      :km_proxima_troca_filtro_oleo, :km_proxima_troca_filtro_ar_motor,
+      :km_proxima_troca_filtro_ar_condicionado, :km_proxima_troca_filtro_oleo_combustivel,
+      :km_proxima_troca_diferencial, :km_proxima_troca_oleo_cambio,
+      :km_proxima_troca_fluido_radiador, :km_proxima_troca_oleo_freio,
+      :km_proximo_alinhamento, :km_proximo_balanceamento,
+      :km_proxima_troca_fluido_direcao, :numero_pedido_bling, :lembrar_cliente_em
+    )
   end
 end

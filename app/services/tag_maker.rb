@@ -1,5 +1,16 @@
 class TagMaker
   include ActionView::Helpers::NumberHelper
+
+  FILTER_CHANGE_INTERVAL_KM = 20_000
+  FLUID_CHANGE_INTERVAL_KM = 40_000
+  MANUAL_TRANSMISSION_CHANGE_INTERVAL_KM = 40_000
+  AUTO_TRANSMISSION_CHANGE_INTERVAL_KM = 60_000
+
+  TRANSMISSION_TYPES = {
+    manual: "Manual",
+    automatic: "Automático"
+  }.freeze
+
   attr_accessor :nome_cliente, :placa_carro, :telefone, :numero_pedido_bling, :km_atual, :km_proxima_troca, :alinhamento,
   :balanceamento, :diferencial, :f_direcao, :filt_ar_cond, :filt_ar_motor, :filt_comb, :filt_oleo, :fluido_radiador, :oleo_cambio, :oleo_freio, :tipo_cambio, :errors
 
@@ -59,39 +70,39 @@ class TagMaker
   end
 
   def calcular_km_proxima_troca_filt_ar_condicionado
-    @km_atual.to_i + 20000
+    @km_atual.to_i + FILTER_CHANGE_INTERVAL_KM
   end
 
   def calcular_km_proxima_troca_filt_ar_motor
-    @km_atual.to_i + 20000
+    @km_atual.to_i + FILTER_CHANGE_INTERVAL_KM
   end
 
   def calcular_km_proxima_troca_filt_oleo_combustivel
-    @km_atual.to_i + 20000
+    @km_atual.to_i + FILTER_CHANGE_INTERVAL_KM
   end
 
   def calcular_km_proxima_troca_diferencial
-    @km_atual.to_i + 40000
+    @km_atual.to_i + FLUID_CHANGE_INTERVAL_KM
   end
 
   def calcular_km_proxima_troca_oleo_cambio
-    if @tipo_cambio == "Manual"
-      @km_atual.to_i + 40000
-    elsif @tipo_cambio == "Automático"
-      @km_atual.to_i + 60000
+    if @tipo_cambio == TRANSMISSION_TYPES[:manual]
+      @km_atual.to_i + MANUAL_TRANSMISSION_CHANGE_INTERVAL_KM
+    elsif @tipo_cambio == TRANSMISSION_TYPES[:automatic]
+      @km_atual.to_i + AUTO_TRANSMISSION_CHANGE_INTERVAL_KM
     end
   end
 
   def calcular_proxima_troca_fluido_radiador
-    @km_atual.to_i + 40000
+    @km_atual.to_i + FLUID_CHANGE_INTERVAL_KM
   end
 
   def calcular_proxima_troca_fluido_freio
-    @km_atual.to_i + 40000
+    @km_atual.to_i + FLUID_CHANGE_INTERVAL_KM
   end
 
   def calcular_proxima_troca_fluido_direcao
-    @km_atual.to_i + 40000
+    @km_atual.to_i + FLUID_CHANGE_INTERVAL_KM
   end
 
   def preencher_data_lembrete
@@ -101,7 +112,25 @@ class TagMaker
   end
 
   def create_tag
-    Tag.create placa_carro: @placa_carro, nome_cliente: @nome_cliente, telefone: @telefone, numero_pedido_bling: @numero_pedido_bling, km_atual: preencher_km_atual, km_proxima_troca_oleo_motor: preencher_km_oleo_motor, meses_proxima_troca_oleo_motor: "6", km_proxima_troca_filtro_oleo: preencher_km_filtro_oleo_motor, km_proxima_troca_filtro_ar_motor: preencher_km_filtro_ar_motor, km_proxima_troca_filtro_ar_condicionado: preencher_km_filtro_ar_condicionado, km_proxima_troca_filtro_oleo_combustivel: preencher_km_filtro_combustivel, km_proxima_troca_diferencial: preencher_km_filtro_diferencial, km_proxima_troca_oleo_cambio: preencher_km_oleo_cambio, km_proxima_troca_fluido_radiador: preencher_km_fluido_radiador, km_proxima_troca_oleo_freio: preencher_km_oleo_freio, km_proxima_troca_fluido_direcao: preencher_km_fluido_direcao, lembrar_cliente_em: preencher_data_lembrete
+    Tag.create(
+      placa_carro: @placa_carro,
+      nome_cliente: @nome_cliente,
+      telefone: @telefone,
+      numero_pedido_bling: @numero_pedido_bling,
+      km_atual: preencher_km_atual,
+      km_proxima_troca_oleo_motor: preencher_km_oleo_motor,
+      meses_proxima_troca_oleo_motor: "6",
+      km_proxima_troca_filtro_oleo: preencher_km_filtro_oleo_motor,
+      km_proxima_troca_filtro_ar_motor: preencher_km_filtro_ar_motor,
+      km_proxima_troca_filtro_ar_condicionado: preencher_km_filtro_ar_condicionado,
+      km_proxima_troca_filtro_oleo_combustivel: preencher_km_filtro_combustivel,
+      km_proxima_troca_diferencial: preencher_km_filtro_diferencial,
+      km_proxima_troca_oleo_cambio: preencher_km_oleo_cambio,
+      km_proxima_troca_fluido_radiador: preencher_km_fluido_radiador,
+      km_proxima_troca_oleo_freio: preencher_km_oleo_freio,
+      km_proxima_troca_fluido_direcao: preencher_km_fluido_direcao,
+      lembrar_cliente_em: preencher_data_lembrete
+    )
   end
 
   def preencher_km_atual
@@ -181,10 +210,10 @@ class TagMaker
   end
 
   def preencher_km_oleo_cambio
-    if @tipo_cambio == "Manual"
-      number_with_delimiter(@km_atual.to_i + 40000)
-    elsif  @tipo_cambio == "Automático"
-      number_with_delimiter(@km_atual.to_i + 60000)
+    if @tipo_cambio == TRANSMISSION_TYPES[:manual]
+      number_with_delimiter(@km_atual.to_i + MANUAL_TRANSMISSION_CHANGE_INTERVAL_KM)
+    elsif @tipo_cambio == TRANSMISSION_TYPES[:automatic]
+      number_with_delimiter(@km_atual.to_i + AUTO_TRANSMISSION_CHANGE_INTERVAL_KM)
     end
   end
 

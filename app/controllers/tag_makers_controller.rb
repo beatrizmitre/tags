@@ -14,16 +14,19 @@ class TagMakersController < ApplicationController
   end
 
   def tag_maker_params
-    # Define an array of checkbox fields that should be converted to booleans
     checkbox_fields = %i[
       alinhamento balanceamento diferencial f_direcao filt_ar_cond
       filt_ar_motor filt_comb filt_oleo fluido_radiador oleo_cambio oleo_freio
     ]
 
-    # Permit all parameters and retrieve the `tag_maker` parameters as a hash
-    infos = params.require(:tag_maker).permit!.to_hash.symbolize_keys
+    permitted_params = params.require(:tag_maker).permit(
+      :nome_cliente, :placa_carro, :telefone, :numero_pedido_bling,
+      :km_atual, :enviar_lembrete_apos, :km_proxima_troca, :tipo_cambio,
+      *checkbox_fields
+    )
 
-    # Transform only the checkbox fields
+    infos = permitted_params.to_hash.symbolize_keys
+
     checkbox_fields.each do |field|
       infos[field] = infos[field] == "1" if infos.key?(field)
     end

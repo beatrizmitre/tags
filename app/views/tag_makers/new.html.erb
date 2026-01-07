@@ -145,14 +145,14 @@
       <div class="flex items-center w-42 mt-2 gap-x-4">
         <div>
           <label>
-            <%= f.radio_button :tipo_cambio, "Automático" %>
+            <%= f.radio_button :tipo_cambio, TagMaker::TRANSMISSION_TYPES[:automatic] %>
             <%= t('Automático') %>
           </label>
         </div>
 
         <div>
           <label>
-            <%= f.radio_button :tipo_cambio, "Manual" %>
+            <%= f.radio_button :tipo_cambio, TagMaker::TRANSMISSION_TYPES[:manual] %>
             <%= t('Manual') %>
           </label>
         </div>
